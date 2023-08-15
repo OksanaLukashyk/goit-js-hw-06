@@ -14,10 +14,36 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-const boxes = document.querySelector("#boxes");
+const boxesCont = document.querySelector("#boxes");
+const inputEl = document.querySelector("input");
+const createBtn = document.querySelector("button[data-create]");
+const destroyBtn = document.querySelector("button[data-destroy]");
 
-function createBoxes(amount) {}
+boxesCont.style.display = "flex";
+boxesCont.style.flexWrap = "wrap";
+boxesCont.style.gap = "5px";
+boxesCont.style.justifyContent = "left";
+boxesCont.style.alignItems = "center";
+boxesCont.style.margin = "30px auto";
+
+createBtn.addEventListener("click", () => createBoxes(inputEl.value));
+destroyBtn.addEventListener("click", destroyBoxes);
+
+function createBoxes(amount) {
+  const boxesArr = [];
+  let initSidesSize = 30;
+  for (let i = 1; i <= amount; i += 1) {
+    const childBox = document.createElement("div");
+    childBox.style.width = `${initSidesSize}px`;
+    childBox.style.height = `${initSidesSize}px`;
+    initSidesSize += 10;
+    childBox.style.backgroundColor = getRandomHexColor();
+    boxesArr.push(childBox);
+  }
+  return boxesCont.append(...boxesArr);
+}
 
 function destroyBoxes() {
-  boxes.innerHTML = "";
+  boxesCont.innerHTML = "";
+  inputEl.value = "";
 }
