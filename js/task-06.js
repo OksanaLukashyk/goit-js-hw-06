@@ -20,10 +20,10 @@ function onBlur(evt) {
   }
 }
 
+textInput.addEventListener("blur", onBlur);
+
 // OR without "remove" rows in onBlur
 // function onFocus(evt) {
 //   evt.currentTarget.classList.remove("invalid", "valid");
 // }
-
-textInput.addEventListener("blur", onBlur);
-textInput.addEventListener("focus", onFocus);
+// textInput.addEventListener("focus", onFocus);
